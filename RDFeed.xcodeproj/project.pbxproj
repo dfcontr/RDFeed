@@ -8,13 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		5949F5231C5951FE00C68E30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5949F5221C5951FE00C68E30 /* AppDelegate.swift */; };
-		5949F5251C5951FE00C68E30 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5949F5241C5951FE00C68E30 /* ViewController.swift */; };
 		5949F5281C5951FE00C68E30 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5949F5261C5951FE00C68E30 /* Main.storyboard */; };
 		5949F52B1C5951FE00C68E30 /* RDFeed.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5949F5291C5951FE00C68E30 /* RDFeed.xcdatamodeld */; };
 		5949F52D1C5951FE00C68E30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5949F52C1C5951FE00C68E30 /* Assets.xcassets */; };
 		5949F5301C5951FE00C68E30 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5949F52E1C5951FE00C68E30 /* LaunchScreen.storyboard */; };
 		5949F53B1C5951FE00C68E30 /* RDFeedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5949F53A1C5951FE00C68E30 /* RDFeedTests.swift */; };
 		5949F5461C5951FE00C68E30 /* RDFeedUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5949F5451C5951FE00C68E30 /* RDFeedUITests.swift */; };
+		5989877E1C59532700629C7B /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5989877D1C59532700629C7B /* FeedViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +37,6 @@
 /* Begin PBXFileReference section */
 		5949F51F1C5951FE00C68E30 /* RDFeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RDFeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5949F5221C5951FE00C68E30 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		5949F5241C5951FE00C68E30 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		5949F5271C5951FE00C68E30 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5949F52A1C5951FE00C68E30 /* RDFeed.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RDFeed.xcdatamodel; sourceTree = "<group>"; };
 		5949F52C1C5951FE00C68E30 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -49,6 +48,7 @@
 		5949F5411C5951FE00C68E30 /* RDFeedUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RDFeedUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5949F5451C5951FE00C68E30 /* RDFeedUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RDFeedUITests.swift; sourceTree = "<group>"; };
 		5949F5471C5951FE00C68E30 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5989877D1C59532700629C7B /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FeedViewController.swift; path = Controllers/FeedViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,8 +99,8 @@
 		5949F5211C5951FE00C68E30 /* RDFeed */ = {
 			isa = PBXGroup;
 			children = (
+				5989877C1C59530D00629C7B /* Controllers */,
 				5949F5221C5951FE00C68E30 /* AppDelegate.swift */,
-				5949F5241C5951FE00C68E30 /* ViewController.swift */,
 				5949F5261C5951FE00C68E30 /* Main.storyboard */,
 				5949F52C1C5951FE00C68E30 /* Assets.xcassets */,
 				5949F52E1C5951FE00C68E30 /* LaunchScreen.storyboard */,
@@ -126,6 +126,14 @@
 				5949F5471C5951FE00C68E30 /* Info.plist */,
 			);
 			path = RDFeedUITests;
+			sourceTree = "<group>";
+		};
+		5989877C1C59530D00629C7B /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				5989877D1C59532700629C7B /* FeedViewController.swift */,
+			);
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -260,7 +268,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5949F52B1C5951FE00C68E30 /* RDFeed.xcdatamodeld in Sources */,
-				5949F5251C5951FE00C68E30 /* ViewController.swift in Sources */,
+				5989877E1C59532700629C7B /* FeedViewController.swift in Sources */,
 				5949F5231C5951FE00C68E30 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -488,6 +496,7 @@
 				5949F54C1C5951FE00C68E30 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5949F54D1C5951FE00C68E30 /* Build configuration list for PBXNativeTarget "RDFeedTests" */ = {
 			isa = XCConfigurationList;
@@ -496,6 +505,7 @@
 				5949F54F1C5951FE00C68E30 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5949F5501C5951FE00C68E30 /* Build configuration list for PBXNativeTarget "RDFeedUITests" */ = {
 			isa = XCConfigurationList;
@@ -504,6 +514,7 @@
 				5949F5521C5951FE00C68E30 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
