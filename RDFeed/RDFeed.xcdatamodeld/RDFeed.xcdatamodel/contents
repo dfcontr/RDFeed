@@ -7,11 +7,6 @@
         <attribute name="story_id" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="story_title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="story_url" optional="YES" attributeType="String" syncable="YES"/>
-        <uniquenessConstraints>
-            <uniquenessConstraint>
-                <constraint value="story_id"/>
-            </uniquenessConstraint>
-        </uniquenessConstraints>
     </entity>
     <elements>
         <element name="Article" positionX="-63" positionY="-18" width="128" height="135"/>
