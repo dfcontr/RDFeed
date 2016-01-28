@@ -1,13 +1,16 @@
 PODS:
   - Alamofire (3.1.5)
   - AVReachability (0.1.1)
+  - DateTools (1.7.0)
 
 DEPENDENCIES:
   - Alamofire (~> 3.1)
   - AVReachability
+  - DateTools (~> 1.7)
 
 SPEC CHECKSUMS:
   Alamofire: 5f730ba29fd113b7ddd71c1e65d0c630acf5d7b0
   AVReachability: 4ee27382ea0975f25784e71a716c75aa62ef1f72
+  DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
 
 COCOAPODS: 0.39.0

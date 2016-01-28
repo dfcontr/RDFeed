@@ -6,6 +6,7 @@ use_frameworks!
 target 'RDFeed' do
     pod 'Alamofire', '~> 3.1'
     pod 'AVReachability'
+    pod 'DateTools', '~> 1.7'
 end
 
 target 'RDFeedTests' do
