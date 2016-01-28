@@ -10,6 +10,7 @@ import UIKit
 import Alamofire
 import CoreData
 import AVReachability
+import DateTools
 
 class FeedViewController: UIViewController {
     
@@ -96,7 +97,7 @@ class FeedViewController: UIViewController {
                     let article = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext)
                     article.setValue(story_id, forKey: "story_id")
                     article.setValue(author, forKey: "author")
-                    article.setValue(created_at, forKey: "created_at")
+                    article.setValue(self.getFormattedDate(created_at), forKey: "created_at")
                     article.setValue(story_title, forKey: "story_title")
                     article.setValue(story_url, forKey: "story_url")
                     
@@ -108,6 +109,12 @@ class FeedViewController: UIViewController {
                     
             }
         }
+    }
+    
+    func getFormattedDate(date: String) -> NSDate {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        return dateFormatter.dateFromString(date)!
     }
     
     
@@ -137,13 +144,14 @@ extension FeedViewController: UITableViewDataSource {
         let cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier("feedCell", forIndexPath: indexPath)
         
         let author = self.articles[indexPath.row].valueForKey("author") as! String
-        let created_at = self.articles[indexPath.row].valueForKey("created_at") as! String
+        let created_at = self.articles[indexPath.row].valueForKey("created_at") as! NSDate
+        let created_atText = created_at.timeAgoSinceNow()
         let story_title = self.articles[indexPath.row].valueForKey("story_title") as! String
         
         cell.textLabel?.text = story_title
         cell.textLabel?.lineBreakMode = .ByWordWrapping
         cell.textLabel?.numberOfLines = 2
-        cell.detailTextLabel?.text = "\(author) - \(created_at)"
+        cell.detailTextLabel?.text = "\(author) - \(created_atText)"
         
         return cell
     }
