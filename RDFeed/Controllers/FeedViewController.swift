@@ -15,6 +15,7 @@ import DateTools
 class FeedViewController: UIViewController {
     
     @IBOutlet weak var table: UITableView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     var articles = [NSManagedObject]()
     var refreshControl:UIRefreshControl!
@@ -31,6 +32,7 @@ class FeedViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         if (Reachability.isConnectedToNetwork() == true) {
+            self.activityIndicator.startAnimating()
             self.updateArticlesList()
         } else {
             self.articles = self.fetchArticles()
@@ -64,6 +66,7 @@ class FeedViewController: UIViewController {
                         completion(result: hits)
                     }
                 }
+                self.activityIndicator.stopAnimating()
         }
     }
     
