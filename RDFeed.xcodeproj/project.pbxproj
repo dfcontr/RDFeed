@@ -16,6 +16,7 @@
 		5949F5461C5951FE00C68E30 /* RDFeedUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5949F5451C5951FE00C68E30 /* RDFeedUITests.swift */; };
 		5989877E1C59532700629C7B /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5989877D1C59532700629C7B /* FeedViewController.swift */; };
 		598987811C595F5900629C7B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598987801C595F5900629C7B /* Constants.swift */; };
+		598987831C59B0BA00629C7B /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598987821C59B0BA00629C7B /* DetailViewController.swift */; };
 		A7A65A6D2A73CE1B8F220404 /* Pods_RDFeed.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBBE08450991BC2B9F3AB51E /* Pods_RDFeed.framework */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +53,7 @@
 		5949F5471C5951FE00C68E30 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5989877D1C59532700629C7B /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FeedViewController.swift; path = Controllers/FeedViewController.swift; sourceTree = "<group>"; };
 		598987801C595F5900629C7B /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = Constants/Constants.swift; sourceTree = "<group>"; };
+		598987821C59B0BA00629C7B /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DetailViewController.swift; path = Controllers/DetailViewController.swift; sourceTree = "<group>"; };
 		979AA3FF3C6A624EDFF4B64B /* Pods-RDFeed.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RDFeed.release.xcconfig"; path = "Pods/Target Support Files/Pods-RDFeed/Pods-RDFeed.release.xcconfig"; sourceTree = "<group>"; };
 		B5EEDDD903519EE684B2B0EB /* Pods-RDFeed.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RDFeed.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RDFeed/Pods-RDFeed.debug.xcconfig"; sourceTree = "<group>"; };
 		DBBE08450991BC2B9F3AB51E /* Pods_RDFeed.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RDFeed.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -150,6 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				5989877D1C59532700629C7B /* FeedViewController.swift */,
+				598987821C59B0BA00629C7B /* DetailViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -355,6 +358,7 @@
 			files = (
 				5949F52B1C5951FE00C68E30 /* RDFeed.xcdatamodeld in Sources */,
 				5989877E1C59532700629C7B /* FeedViewController.swift in Sources */,
+				598987831C59B0BA00629C7B /* DetailViewController.swift in Sources */,
 				5949F5231C5951FE00C68E30 /* AppDelegate.swift in Sources */,
 				598987811C595F5900629C7B /* Constants.swift in Sources */,
 			);
