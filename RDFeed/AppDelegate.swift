@@ -88,7 +88,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let coordinator = self.persistentStoreCoordinator
         var managedObjectContext = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
         managedObjectContext.persistentStoreCoordinator = coordinator
-        managedObjectContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+        let mergePolicy = NSMergePolicy(mergeType:NSMergePolicyType.RollbackMergePolicyType )
+        managedObjectContext.mergePolicy = mergePolicy
         return managedObjectContext
     }()
 
