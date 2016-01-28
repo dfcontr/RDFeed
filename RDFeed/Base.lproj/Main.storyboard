@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MeJ-lW-BIl">
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SIk-TC-Xsi">
                                 <rect key="frame" x="0.0" y="0.0" width="1" height="1"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -55,17 +55,23 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="RIs-fC-avD"/>
                                 </connections>
                             </tableView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Ery-3e-1pv">
+                                <rect key="frame" x="290" y="290" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="Ery-3e-1pv" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="2nI-TJ-vYp"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="5xf-Wn-C9E" secondAttribute="bottom" id="Hxd-50-yw5"/>
                             <constraint firstItem="5xf-Wn-C9E" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="Yfu-eU-aoD"/>
                             <constraint firstAttribute="trailing" secondItem="5xf-Wn-C9E" secondAttribute="trailing" id="a0A-hP-niK"/>
                             <constraint firstItem="5xf-Wn-C9E" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="vFc-el-czg"/>
+                            <constraint firstItem="Ery-3e-1pv" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="xDR-NU-4ct"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="fH6-EN-mg1"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="Ery-3e-1pv" id="TVl-Lj-l4O"/>
                         <outlet property="table" destination="5xf-Wn-C9E" id="BA2-H2-yqi"/>
                         <segue destination="YIt-lh-c6Q" kind="show" identifier="feedDetailSegue" id="ssy-Px-JB8"/>
                     </connections>
@@ -93,7 +99,13 @@
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kv2-qt-ViM">
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
+                                <connections>
+                                    <outlet property="delegate" destination="YIt-lh-c6Q" id="a4B-eS-HGg"/>
+                                </connections>
                             </webView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="dpo-9Y-Emi">
+                                <rect key="frame" x="290" y="290" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -101,9 +113,12 @@
                             <constraint firstItem="2jT-nh-EQM" firstAttribute="top" secondItem="Kv2-qt-ViM" secondAttribute="bottom" id="JE6-FS-pR8"/>
                             <constraint firstItem="Kv2-qt-ViM" firstAttribute="top" secondItem="ezf-Gu-WJG" secondAttribute="bottom" id="LcN-Mu-1AF"/>
                             <constraint firstItem="Kv2-qt-ViM" firstAttribute="leading" secondItem="S0u-As-AiX" secondAttribute="leading" id="Mf6-Af-zob"/>
+                            <constraint firstItem="dpo-9Y-Emi" firstAttribute="centerY" secondItem="S0u-As-AiX" secondAttribute="centerY" id="Yzd-b1-q3j"/>
+                            <constraint firstItem="dpo-9Y-Emi" firstAttribute="centerX" secondItem="S0u-As-AiX" secondAttribute="centerX" id="uKR-VW-wep"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="dpo-9Y-Emi" id="kY8-5x-0oV"/>
                         <outlet property="webView" destination="Kv2-qt-ViM" id="0iH-o0-1iM"/>
                     </connections>
                 </viewController>
