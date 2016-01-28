@@ -72,6 +72,7 @@ class FeedViewController: UIViewController {
         let managedContext = appDelegate.managedObjectContext
         let fetchRequest = NSFetchRequest(entityName: "Article")
         fetchRequest.predicate = NSPredicate(format: "is_deleted == NO")
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "created_at", ascending: false)]
         do {
             let results = try managedContext.executeFetchRequest(fetchRequest)
             return results as! [NSManagedObject]
