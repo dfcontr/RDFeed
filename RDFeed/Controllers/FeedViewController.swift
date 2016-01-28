@@ -118,16 +118,14 @@ class FeedViewController: UIViewController {
         return dateFormatter.dateFromString(date)!
     }
     
-    
-    /*
     // MARK: - Navigation
-    
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    // Get the new view controller using segue.destinationViewController.
-    // Pass the selected object to the new view controller.
+        if (segue.identifier == "feedDetailSegue") {
+            let destination : DetailViewController = segue.destinationViewController as! DetailViewController
+            let selectedIndex = sender as! NSIndexPath
+            destination.article = self.articles[selectedIndex.row]
+        }
     }
-    */
     
     // MARK: - Actions
     func refresh(sender:AnyObject)
@@ -167,7 +165,7 @@ extension FeedViewController: UITableViewDelegate {
     
     // Table view delegate methods
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        //self.performSegueWithIdentifier("segue", sender: indexPath)
+        self.performSegueWithIdentifier("feedDetailSegue", sender: indexPath)
     }
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
