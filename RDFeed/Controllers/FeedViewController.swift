@@ -70,6 +70,7 @@ class FeedViewController: UIViewController {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let managedContext = appDelegate.managedObjectContext
         let fetchRequest = NSFetchRequest(entityName: "Article")
+        fetchRequest.predicate = NSPredicate(format: "is_deleted == NO")
         do {
             let results = try managedContext.executeFetchRequest(fetchRequest)
             return results as! [NSManagedObject]
@@ -158,5 +159,23 @@ extension FeedViewController: UITableViewDelegate {
     // Table view delegate methods
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         //self.performSegueWithIdentifier("segue", sender: indexPath)
+    }
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == UITableViewCellEditingStyle.Delete {
+            let article = self.articles[indexPath.row]
+            self.articles.removeAtIndex(indexPath.row)
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+            
+            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            let managedContext = appDelegate.managedObjectContext
+            article.setValue(NSNumber(bool: true)	, forKey: "is_deleted")
+            
+            do {
+                try managedContext.save()
+            } catch let error as NSError {
+                print("Could not save \(error), \(error.userInfo)")
+            }
+        }
     }
 }
