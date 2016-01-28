@@ -96,25 +96,26 @@ class FeedViewController: UIViewController {
                 story_title = hit["story_title"] as? String,
                 story_url = hit["story_url"] as? String,
                 story_id = hit["story_id"] as? Int {
-                    let appDelegate =
-                    UIApplication.sharedApplication().delegate as! AppDelegate
-                    let managedContext = appDelegate.managedObjectContext
-                    let entity = NSEntityDescription.entityForName("Article",
-                        inManagedObjectContext:managedContext)
-                    
-                    let article = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext)
-                    article.setValue(story_id, forKey: "story_id")
-                    article.setValue(author, forKey: "author")
-                    article.setValue(self.getFormattedDate(created_at), forKey: "created_at")
-                    article.setValue(story_title, forKey: "story_title")
-                    article.setValue(story_url, forKey: "story_url")
-                    
-                    do {
-                        try managedContext.save()
-                    } catch let error as NSError {
-                        print("Could not save \(error), \(error.userInfo)")
+                    if (self.tokenExists(String(story_id)) == false) {
+                        let appDelegate =
+                        UIApplication.sharedApplication().delegate as! AppDelegate
+                        let managedContext = appDelegate.managedObjectContext
+                        let entity = NSEntityDescription.entityForName("Article",
+                            inManagedObjectContext:managedContext)
+                        
+                        let article = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext)
+                        article.setValue(story_id, forKey: "story_id")
+                        article.setValue(author, forKey: "author")
+                        article.setValue(self.getFormattedDate(created_at), forKey: "created_at")
+                        article.setValue(story_title, forKey: "story_title")
+                        article.setValue(story_url, forKey: "story_url")
+                        
+                        do {
+                            try managedContext.save()
+                        } catch let error as NSError {
+                            print("Could not save \(error), \(error.userInfo)")
+                        }
                     }
-                    
             }
         }
     }
@@ -123,6 +124,21 @@ class FeedViewController: UIViewController {
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
         return dateFormatter.dateFromString(date)!
+    }
+    
+    func tokenExists (aToken:String) -> Bool {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let managedContext = appDelegate.managedObjectContext
+        let request: NSFetchRequest = NSFetchRequest(entityName:"Article")
+        let predicate = NSPredicate(format: "story_id == %@", argumentArray: [aToken])
+        request.predicate = predicate
+        
+        let error: NSErrorPointer = nil
+        let count = managedContext.countForFetchRequest(request, error: error)
+        if (count == NSNotFound || count == 0) {
+            return false
+        }
+        return true
     }
     
     // MARK: - Navigation
