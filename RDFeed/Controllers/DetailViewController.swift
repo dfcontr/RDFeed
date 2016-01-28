@@ -12,6 +12,7 @@ import CoreData
 class DetailViewController: UIViewController {
     
     @IBOutlet weak var webView: UIWebView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     var article: NSManagedObject!
 
@@ -22,6 +23,7 @@ class DetailViewController: UIViewController {
         let url = NSURL(string: (self.article.valueForKey("story_url") as? String)!)
         let request = NSURLRequest(URL: url!)
         self.title = self.article.valueForKey("story_title") as? String
+        self.activityIndicator.startAnimating()
         self.webView.loadRequest(request)
     }
 
@@ -41,4 +43,10 @@ class DetailViewController: UIViewController {
     }
     */
 
+}
+
+extension DetailViewController: UIWebViewDelegate {
+    func webViewDidFinishLoad(webView: UIWebView) {
+        self.activityIndicator.stopAnimating()
+    }
 }
