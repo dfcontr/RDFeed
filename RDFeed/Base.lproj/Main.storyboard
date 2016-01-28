@@ -55,6 +55,15 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="RIs-fC-avD"/>
                                 </connections>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No articles available. Please try again later." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ntU-DK-C23">
+                                <rect key="frame" x="0.0" y="290" width="600" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="oog-2f-Uvm"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Ery-3e-1pv">
                                 <rect key="frame" x="290" y="290" width="20" height="20"/>
                             </activityIndicatorView>
@@ -62,16 +71,21 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Ery-3e-1pv" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="2nI-TJ-vYp"/>
+                            <constraint firstItem="ntU-DK-C23" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="AjF-5Y-g7X"/>
+                            <constraint firstItem="ntU-DK-C23" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="E9G-5A-i6j"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="5xf-Wn-C9E" secondAttribute="bottom" id="Hxd-50-yw5"/>
                             <constraint firstItem="5xf-Wn-C9E" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="Yfu-eU-aoD"/>
                             <constraint firstAttribute="trailing" secondItem="5xf-Wn-C9E" secondAttribute="trailing" id="a0A-hP-niK"/>
                             <constraint firstItem="5xf-Wn-C9E" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="vFc-el-czg"/>
+                            <constraint firstAttribute="trailing" secondItem="ntU-DK-C23" secondAttribute="trailing" id="vPu-rw-tR4"/>
                             <constraint firstItem="Ery-3e-1pv" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="xDR-NU-4ct"/>
+                            <constraint firstItem="ntU-DK-C23" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="yoM-DC-uHO"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="fH6-EN-mg1"/>
                     <connections>
                         <outlet property="activityIndicator" destination="Ery-3e-1pv" id="TVl-Lj-l4O"/>
+                        <outlet property="emptyState" destination="ntU-DK-C23" id="Dvg-yd-93A"/>
                         <outlet property="table" destination="5xf-Wn-C9E" id="BA2-H2-yqi"/>
                         <segue destination="YIt-lh-c6Q" kind="show" identifier="feedDetailSegue" id="ssy-Px-JB8"/>
                     </connections>

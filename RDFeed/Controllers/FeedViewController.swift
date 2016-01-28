@@ -16,9 +16,11 @@ class FeedViewController: UIViewController {
     
     @IBOutlet weak var table: UITableView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var emptyState: UILabel!
     
     var articles = [NSManagedObject]()
     var refreshControl:UIRefreshControl!
+    var isLoading = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +33,7 @@ class FeedViewController: UIViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
+        self.emptyState.hidden = true
         if (Reachability.isConnectedToNetwork() == true) {
             self.activityIndicator.startAnimating()
             self.updateArticlesList()
@@ -38,7 +41,6 @@ class FeedViewController: UIViewController {
             self.articles = self.fetchArticles()
             self.table.reloadData()
         }
-        
     }
     
     override func didReceiveMemoryWarning() {
@@ -59,8 +61,10 @@ class FeedViewController: UIViewController {
     }
     
     func requestArticles(completion: (result: [[String: AnyObject]]) -> Void) {
+        self.isLoading = true
         Alamofire.request(.GET, Constants.Web.FeedURL)
             .responseJSON { response in
+                self.isLoading = false
                 if let JSON = response.result.value {
                     if let hits = JSON["hits"] as? [[String: AnyObject]] {
                         completion(result: hits)
@@ -159,7 +163,13 @@ extension FeedViewController: UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return  self.articles.count
+        if (self.articles.count == 0 && self.isLoading == false) {
+            self.emptyState.hidden = false
+            return 0;
+        } else {
+            self.emptyState.hidden = true
+            return  self.articles.count
+        }
     }
 }
 
