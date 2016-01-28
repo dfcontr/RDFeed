@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <scenes>
-        <!--Feed View Controller-->
+        <!--Articles Feed-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="FeedViewController" customModule="RDFeed" customModuleProvider="target" sceneMemberID="viewController">
@@ -82,7 +82,7 @@
                             <constraint firstItem="ntU-DK-C23" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="yoM-DC-uHO"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="fH6-EN-mg1"/>
+                    <navigationItem key="navigationItem" title="Articles Feed" id="fH6-EN-mg1"/>
                     <connections>
                         <outlet property="activityIndicator" destination="Ery-3e-1pv" id="TVl-Lj-l4O"/>
                         <outlet property="emptyState" destination="ntU-DK-C23" id="Dvg-yd-93A"/>
