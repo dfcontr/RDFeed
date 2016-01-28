@@ -16,16 +16,21 @@ class FeedViewController: UIViewController {
     @IBOutlet weak var table: UITableView!
     
     var articles = [NSManagedObject]()
+    var refreshControl:UIRefreshControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        self.refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
+        self.table.addSubview(refreshControl)
     }
     
     override func viewWillAppear(animated: Bool) {
         if (Reachability.isConnectedToNetwork() == true) {
-            self.requestArticles()
+            self.updateArticlesList()
         } else {
             self.articles = self.fetchArticles()
             self.table.reloadData()
@@ -36,6 +41,29 @@ class FeedViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func updateArticlesList() {
+        self.requestArticles({(results: [[String: AnyObject]]) -> Void in
+            self.saveArticles(results)
+            self.articles = self.fetchArticles()
+            self.table.reloadData()
+            
+            if let refresh = self.refreshControl {
+                refresh.endRefreshing()
+            }
+        })
+    }
+    
+    func requestArticles(completion: (result: [[String: AnyObject]]) -> Void) {
+        Alamofire.request(.GET, Constants.Web.FeedURL)
+            .responseJSON { response in
+                if let JSON = response.result.value {
+                    if let hits = JSON["hits"] as? [[String: AnyObject]] {
+                        completion(result: hits)
+                    }
+                }
+        }
     }
     
     func fetchArticles() -> [NSManagedObject]! {
@@ -51,40 +79,33 @@ class FeedViewController: UIViewController {
         }
     }
     
-    func requestArticles() {
-        Alamofire.request(.GET, Constants.Web.FeedURL)
-            .responseJSON { response in
-                if let JSON = response.result.value {
-                    if let hits = JSON["hits"] as? [[String: AnyObject]] {
-                        for hit in hits {
-                            if let
-                                story_id = hit["story_id"] as? Int,
-                                author = hit["author"] as? String,
-                                created_at = hit["created_at"] as? String,
-                                story_title = hit["story_title"] as? String,
-                                story_url = hit["story_url"] as? String {
-                                    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-                                    let managedContext = appDelegate.managedObjectContext
-                                    let entity = NSEntityDescription.entityForName("Article", inManagedObjectContext:managedContext)
-                                    
-                                    let article = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext)
-                                    article.setValue(author, forKey: "author")
-                                    article.setValue(created_at, forKey: "created_at")
-                                    article.setValue(story_title, forKey: "story_title")
-                                    article.setValue(story_url, forKey: "story_url")
-                                    article.setValue(story_id, forKey: "story_id")
-                                    
-                                    do {
-                                        try managedContext.save()
-                                    } catch let error as NSError {
-                                        print("Could not save \(error), \(error.userInfo)")
-                                    }
-                            }
-                        }
+    func saveArticles(hits: [[String: AnyObject]]) {
+        for hit in hits {
+            if let      author = hit["author"] as? String,
+                created_at = hit["created_at"] as? String,
+                story_title = hit["story_title"] as? String,
+                story_url = hit["story_url"] as? String,
+                story_id = hit["story_id"] as? Int {
+                    let appDelegate =
+                    UIApplication.sharedApplication().delegate as! AppDelegate
+                    let managedContext = appDelegate.managedObjectContext
+                    let entity = NSEntityDescription.entityForName("Article",
+                        inManagedObjectContext:managedContext)
+                    
+                    let article = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext)
+                    article.setValue(story_id, forKey: "story_id")
+                    article.setValue(author, forKey: "author")
+                    article.setValue(created_at, forKey: "created_at")
+                    article.setValue(story_title, forKey: "story_title")
+                    article.setValue(story_url, forKey: "story_url")
+                    
+                    do {
+                        try managedContext.save()
+                    } catch let error as NSError {
+                        print("Could not save \(error), \(error.userInfo)")
                     }
-                    self.articles = self.fetchArticles()
-                    self.table.reloadData()
-                }
+                    
+            }
         }
     }
     
@@ -98,6 +119,12 @@ class FeedViewController: UIViewController {
     // Pass the selected object to the new view controller.
     }
     */
+    
+    // MARK: - Actions
+    func refresh(sender:AnyObject)
+    {
+        self.updateArticlesList()
+    }
     
 }
 
