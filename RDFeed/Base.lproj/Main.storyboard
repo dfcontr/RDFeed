@@ -117,22 +117,36 @@
                                     <outlet property="delegate" destination="YIt-lh-c6Q" id="a4B-eS-HGg"/>
                                 </connections>
                             </webView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No internet access. Please try again later." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="doH-Ge-gFH">
+                                <rect key="frame" x="0.0" y="290" width="600" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="hty-bx-cZc"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="dpo-9Y-Emi">
                                 <rect key="frame" x="290" y="290" width="20" height="20"/>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="doH-Ge-gFH" secondAttribute="trailing" id="3Ab-Aq-IVV"/>
+                            <constraint firstItem="doH-Ge-gFH" firstAttribute="centerX" secondItem="S0u-As-AiX" secondAttribute="centerX" id="8vF-XR-pZQ"/>
                             <constraint firstAttribute="trailing" secondItem="Kv2-qt-ViM" secondAttribute="trailing" id="B0b-YF-guN"/>
                             <constraint firstItem="2jT-nh-EQM" firstAttribute="top" secondItem="Kv2-qt-ViM" secondAttribute="bottom" id="JE6-FS-pR8"/>
                             <constraint firstItem="Kv2-qt-ViM" firstAttribute="top" secondItem="ezf-Gu-WJG" secondAttribute="bottom" id="LcN-Mu-1AF"/>
                             <constraint firstItem="Kv2-qt-ViM" firstAttribute="leading" secondItem="S0u-As-AiX" secondAttribute="leading" id="Mf6-Af-zob"/>
                             <constraint firstItem="dpo-9Y-Emi" firstAttribute="centerY" secondItem="S0u-As-AiX" secondAttribute="centerY" id="Yzd-b1-q3j"/>
+                            <constraint firstItem="doH-Ge-gFH" firstAttribute="centerY" secondItem="S0u-As-AiX" secondAttribute="centerY" id="phX-qY-Pwl"/>
                             <constraint firstItem="dpo-9Y-Emi" firstAttribute="centerX" secondItem="S0u-As-AiX" secondAttribute="centerX" id="uKR-VW-wep"/>
+                            <constraint firstItem="doH-Ge-gFH" firstAttribute="leading" secondItem="S0u-As-AiX" secondAttribute="leading" id="xQ6-i1-aeq"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="activityIndicator" destination="dpo-9Y-Emi" id="kY8-5x-0oV"/>
+                        <outlet property="emptyState" destination="doH-Ge-gFH" id="imZ-RN-fz0"/>
                         <outlet property="webView" destination="Kv2-qt-ViM" id="0iH-o0-1iM"/>
                     </connections>
                 </viewController>

@@ -8,11 +8,13 @@
 
 import UIKit
 import CoreData
+import AVReachability
 
 class DetailViewController: UIViewController {
     
     @IBOutlet weak var webView: UIWebView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var emptyState: UILabel!
     
     var article: NSManagedObject!
 
@@ -21,10 +23,16 @@ class DetailViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         let url = NSURL(string: (self.article.valueForKey("story_url") as? String)!)
-        let request = NSURLRequest(URL: url!)
-        self.title = self.article.valueForKey("story_title") as? String
-        self.activityIndicator.startAnimating()
-        self.webView.loadRequest(request)
+        
+        self.emptyState.hidden = true
+        if (Reachability.isConnectedToNetwork() == true) {
+            let request = NSURLRequest(URL: url!)
+            self.title = self.article.valueForKey("story_title") as? String
+            self.activityIndicator.startAnimating()
+            self.webView.loadRequest(request)
+        } else {
+            self.emptyState.hidden = false
+        }
     }
 
     override func didReceiveMemoryWarning() {
