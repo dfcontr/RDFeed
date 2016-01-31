@@ -30,9 +30,8 @@ class FeedViewController: UIViewController {
         self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
         self.refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
         self.table.addSubview(refreshControl)
-    }
-    
-    override func viewWillAppear(animated: Bool) {
+        
+        // If network is not reachable, load the last articles saved to avoid empty screen
         self.emptyState.hidden = true
         if (Reachability.isConnectedToNetwork() == true) {
             self.activityIndicator.startAnimating()
